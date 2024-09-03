@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-(cxpvv^7-k*3omf#o4)_06p#lf-w7vzu^5wei*dj79@_y2es=9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'imgcdn',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -49,9 +50,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'cdnapi.urls'
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  # Allow requests from Next.js
+]
+CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES = [
     {
